@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import { welcome, getUserName, getRandomInt, congratulation, question, brainEven } from '../index';
+import { brainEven } from '../index';
 
 brainEven();

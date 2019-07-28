@@ -1,7 +1,7 @@
 import readlineSync from 'readline-sync';
 
 export const welcome = () => {
-  return console.log('Welcome to the brain-games!');
+  console.log('Welcome to the brain-games!');
 };
 
 export const getUserName = () => {
@@ -16,7 +16,7 @@ export const getRandomInt = (min, max) => {
 };
 
 export const congratulation = (userName) => {
-  return console.log(`Congratulations, ${userName}!`);
+  console.log(`Congratulations, ${userName}!`);
 };
 
 export const question = (userName) => {
