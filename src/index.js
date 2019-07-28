@@ -1,2 +1,5 @@
 import readlineSync from 'readline-sync';
-export const getUserName = () => readlineSync.question('');
+
+const getUserName = () => readlineSync.question('');
+
+export default getUserName;
