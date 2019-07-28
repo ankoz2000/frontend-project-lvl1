@@ -1,6 +1,10 @@
 {
   "name": "minding",
+<<<<<<< HEAD
   "version": "1.1.1",
+=======
+  "version": "1.1.0",
+>>>>>>> caa7f9db5bb5e9ee43a2a45e82c5cda1e2fd800d
   "description": "",
   "main": "src/index.js",
   "scripts": {
