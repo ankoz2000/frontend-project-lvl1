@@ -3,4 +3,5 @@
 
 INSTALLATION:
 
-<script id="asciicast-BiDNOxQ1SEp6hOyUt1CoUpHGy" src="https://asciinema.org/a/BiDNOxQ1SEp6hOyUt1CoUpHGy.js" async></script>
+
+<a href="https://asciinema.org/a/BiDNOxQ1SEp6hOyUt1CoUpHGy" target="_blank"><img src="https://asciinema.org/a/BiDNOxQ1SEp6hOyUt1CoUpHGy.svg" /></a>
