@@ -10,3 +10,7 @@ INSTALLATION
 2. Brain-calc
 
 <a href="https://asciinema.org/a/259997" target="_blank"><img src="https://asciinema.org/a/259997.svg" /></a>
+
+3. Brain-gcd
+
+<a href="https://asciinema.org/a/260002" target="_blank"><img src="https://asciinema.org/a/260002.svg" /></a>
