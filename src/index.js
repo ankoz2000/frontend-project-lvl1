@@ -81,7 +81,7 @@ const checkingAnswer = (answer, number1, number2, operation = '') => {
   if (operation === '*' && answer === String(number1 * number2)) return true;
   if (operation === '+' && answer === String(number1 + number2)) return true;
   if (operation === '-' && answer === String(number1 - number2)) return true;
-  if (answer === findGcd(number1, number2)) return true;
+  if (answer === String(findGcd(number1, number2))) return true;
   return false;
 };
 
