@@ -1,6 +1,6 @@
 {
   "name": "coldcherry",
-  "version": "2.1.2",
+  "version": "2.2.2",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "brain-games": "dist/bin/brain-games.js",
     "brain-even": "dist/bin/games/brain-even.js",
     "brain-calc": "dist/bin/games/brain-calc.js",
-    "brain-gcd": "dist/bin/games/brain-gcd.js"
+    "brain-gcd": "dist/bin/games/brain-gcd.js",
+    "brain-progression": "dist/bin/games/brain-progression.js"
   },
   "files": [
     "dist"
