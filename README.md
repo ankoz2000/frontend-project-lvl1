@@ -14,3 +14,7 @@ INSTALLATION
 3. Brain-gcd
 
 <a href="https://asciinema.org/a/260002" target="_blank"><img src="https://asciinema.org/a/260002.svg" /></a>
+
+4. Brain-progression
+
+<a href="https://asciinema.org/a/260214" target="_blank"><img src="https://asciinema.org/a/260214.svg" /></a>
