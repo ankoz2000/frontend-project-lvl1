@@ -1,7 +1,8 @@
 {
   "name": "coldcherry",
   "version": "3.0.1",
-  "description": "",
+  "description": "Play with your brain",
+  "keywords": ["Brain", "IQ", "Hexlet", "games", "math"],
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

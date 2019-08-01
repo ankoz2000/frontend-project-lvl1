@@ -1,5 +1,7 @@
 import readlineSync from 'readline-sync';
 
+const quantityOfRightAnswers = 3;
+
 export const welcome = () => {
   console.log('Welcome to the brain-games!');
 };
@@ -59,7 +61,7 @@ const questionEven = (userName) => {
       tmp += 1;
       console.log('Correct!');
     }
-  } while (tmp !== 3);
+  } while (tmp !== quantityOfRightAnswers);
   congratulation(userName);
   return console.log('');
 };
@@ -107,7 +109,7 @@ const questionCalc = (userName) => {
       tmp += 1;
       console.log('Correct!');
     }
-  } while (tmp !== 3);
+  } while (tmp !== quantityOfRightAnswers);
   return congratulation(userName);
 };
 
@@ -137,7 +139,7 @@ const questionGcd = (userName) => {
       tmp += 1;
       console.log('Correct!');
     }
-  } while (tmp !== 3);
+  } while (tmp !== quantityOfRightAnswers);
   return congratulation(userName);
 };
 
@@ -203,7 +205,7 @@ const questionProgression = (userName) => {
     const rightAnswer = hideNumber(place, startNumber, step);
     const check = checkingAnswerProgression(answer, rightAnswer);
     tmp += comparingAnswers(check, answer, rightAnswer, userName);
-  } while (tmp !== 3);
+  } while (tmp !== quantityOfRightAnswers);
   return congratulation(userName);
 };
 
@@ -235,7 +237,7 @@ const questionPrime = (userName) => {
     const rightAnswer = isPrime(number) ? 'yes' : 'no';
     const check = checkingAnswerPrime(answer, rightAnswer);
     tmp += comparingAnswers(check, answer, rightAnswer, userName);
-  } while (tmp !== 3);
+  } while (tmp !== quantityOfRightAnswers);
   return congratulation(userName);
 };
 
