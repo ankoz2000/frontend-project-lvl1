@@ -22,3 +22,7 @@ INSTALLATION
 5. Brain-prime
 
 <a href="https://asciinema.org/a/260373" target="_blank"><img src="https://asciinema.org/a/260373.svg" /></a>
+
+6. Brain-games (installation + playing all games)
+
+<a href="https://asciinema.org/a/260392" target="_blank"><img src="https://asciinema.org/a/260392.svg" /></a>
