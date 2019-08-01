@@ -36,7 +36,7 @@ const checkingAnswerEven = (answer, randomInt) => {
   return false;
 };
 
-const checkingRightAnswer = (randomInt = 1, number1, number2, operation = '') => {
+const checkingRightAnswerEven = (randomInt, number1, number2, operation) => {
   if (randomInt % 2 === 0) return 'yes';
   if (operation === '*') return number1 * number2;
   if (operation === '+') return number1 + number2;
@@ -52,7 +52,7 @@ const questionEven = (userName) => {
     const answer = readlineSync.question('Your answer: ');
     const check = checkingAnswerEven(answer, randomInt);
     if (check === false) {
-      const rightAnswer = checkingRightAnswer(randomInt);
+      const rightAnswer = checkingRightAnswerEven(randomInt);
       console.log(`"${answer}" is wrong answer. Right answer is "${rightAnswer}"`);
       console.log(`Try again, ${userName}`);
     } else {
@@ -77,13 +77,17 @@ const findGcd = (number1, number2) => {
   return greatestNumber;
 };
 
-const checkingAnswer = (answer = '', number1 = 0, number2 = 1, operation = '', rightAnswer) => {
+const checkingAnswerCalc = (answer, number1, number2, operation) => {
   if (operation === '*' && answer === String(number1 * number2)) return true;
   if (operation === '+' && answer === String(number1 + number2)) return true;
   if (operation === '-' && answer === String(number1 - number2)) return true;
-  if (answer === String(findGcd(number1, number2))) return true;
-  if (answer === String(rightAnswer)) return true;
   return false;
+};
+
+const checkingRightAnswerCalc = (number1, number2, operation) => {
+  if (operation === '*') return number1 * number2;
+  if (operation === '+') return number1 + number2;
+  return number1 - number2;
 };
 
 const questionCalc = (userName) => {
@@ -94,9 +98,9 @@ const questionCalc = (userName) => {
     const operation = getRandomOperation();
     console.log(`Question: ${number1} ${operation} ${number2}`);
     const answer = readlineSync.question('Your answer: ');
-    const check = checkingAnswer(answer, number1, number2, operation);
+    const check = checkingAnswerCalc(answer, number1, number2, operation);
     if (check === false) {
-      const rightAnswer = checkingRightAnswer(1, number1, number2, operation);
+      const rightAnswer = checkingRightAnswerCalc(number1, number2, operation);
       console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
       console.log(`Try again, ${userName}`);
     } else {
@@ -112,6 +116,11 @@ export const brainCalc = (userName) => {
   return userName;
 };
 
+const checkingAnswerGcd = (answer, number1, number2) => {
+  if (answer === String(findGcd(number1, number2))) return true;
+  return false;
+};
+
 const questionGcd = (userName) => {
   let tmp = 0;
   do {
@@ -119,7 +128,7 @@ const questionGcd = (userName) => {
     const number2 = getRandomInt(1, 100);
     console.log(`Question: ${number1} ${number2}`);
     const answer = readlineSync.question('Your answer: ');
-    const check = checkingAnswer(answer, number1, number2);
+    const check = checkingAnswerGcd(answer, number1, number2);
     if (check === false) {
       const rightAnswer = findGcd(number1, number2);
       console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
@@ -165,6 +174,21 @@ const printProgressionWithoutNumber = (place, startNumber, step, quantity) => {
   return str;
 };
 
+const comparingAnswers = (check, answer, rightAnswer, userName) => {
+  if (check === false) {
+    console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
+    console.log(`Try again, ${userName}`);
+  } else {
+    console.log('Correct!');
+    return 1;
+  }
+  return 0;
+};
+
+const checkingAnswerProgression = (answer, rightAnswer) => {
+  if (answer === String(rightAnswer)) return true;
+  return false;
+};
 
 const questionProgression = (userName) => {
   let tmp = 0;
@@ -177,14 +201,8 @@ const questionProgression = (userName) => {
     console.log(`Question: ${string}`);
     const answer = readlineSync.question('Your answer: ');
     const rightAnswer = hideNumber(place, startNumber, step);
-    const check = checkingAnswer(answer, '', 0, 0, rightAnswer);
-    if (check === false) {
-      console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
-      console.log(`Try again, ${userName}`);
-    } else {
-      tmp += 1;
-      console.log('Correct!');
-    }
+    const check = checkingAnswerProgression(answer, rightAnswer);
+    tmp += comparingAnswers(check, answer, rightAnswer, userName);
   } while (tmp !== 3);
   return congratulation(userName);
 };
@@ -195,13 +213,17 @@ export const brainProgression = (userName) => {
 };
 
 const isPrime = (number) => {
-  if (number % 2 === 0 && number !== 2) return false; // Any even numper is compound
-  if (number === 2 || number === 1) return false; // 2 - Compound number
+  if (number % 2 === 0 || number === 2 || number === 1) return false; // Any even numper is compound
   const k = Math.round(Math.sqrt(number));
   for (let i = 3; i < k; i += 2) { // Check uneven divider
     if (number % i === 0) return false;
   }
   return true;
+};
+
+const checkingAnswerPrime = (answer, rightAnswer) => {
+  if (answer === String(rightAnswer)) return true;
+  return false;
 };
 
 const questionPrime = (userName) => {
@@ -211,14 +233,8 @@ const questionPrime = (userName) => {
     console.log(`Question: ${number}`);
     const answer = readlineSync.question('Your answer: ');
     const rightAnswer = isPrime(number) ? 'yes' : 'no';
-    const check = checkingAnswer(answer, '', 0, 0, rightAnswer);
-    if (check === false) {
-      console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
-      console.log(`Try again, ${userName}`);
-    } else {
-      tmp += 1;
-      console.log('Correct!');
-    }
+    const check = checkingAnswerPrime(answer, rightAnswer);
+    tmp += comparingAnswers(check, answer, rightAnswer, userName);
   } while (tmp !== 3);
   return congratulation(userName);
 };
