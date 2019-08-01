@@ -18,3 +18,7 @@ INSTALLATION
 4. Brain-progression
 
 <a href="https://asciinema.org/a/260214" target="_blank"><img src="https://asciinema.org/a/260214.svg" /></a>
+
+5. Brain-prime
+
+<a href="https://asciinema.org/a/260373" target="_blank"><img src="https://asciinema.org/a/260373.svg" /></a>
