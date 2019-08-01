@@ -193,3 +193,37 @@ export const brainProgression = (userName) => {
   questionProgression(userName);
   return userName;
 };
+
+const isPrime = (number) => {
+  if (number % 2 === 0 && number !== 2) return false; // Any even numper is compound
+  if (number === 2 || number === 1) return false; // 2 - Compound number
+  const k = Math.round(Math.sqrt(number));
+  for (let i = 3; i < k; i += 2) { // Check uneven divider
+    if (number % i === 0) return false;
+  }
+  return true;
+};
+
+const questionPrime = (userName) => {
+  let tmp = 0;
+  do {
+    const number = getRandomInt(1, 100);
+    console.log(`Question: ${number}`);
+    const answer = readlineSync.question('Your answer: ');
+    const rightAnswer = isPrime(number) ? 'yes' : 'no';
+    const check = checkingAnswer(answer, '', 0, 0, rightAnswer);
+    if (check === false) {
+      console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
+      console.log(`Try again, ${userName}`);
+    } else {
+      tmp += 1;
+      console.log('Correct!');
+    }
+  } while (tmp !== 3);
+  return congratulation(userName);
+};
+
+export const brainPrime = (userName) => {
+  questionPrime(userName);
+  return userName;
+};
