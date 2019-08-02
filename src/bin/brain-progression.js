@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { welcome, getUserName, brainProgression } from '../../index';
+import { welcome, getUserName, brainProgression } from '../index';
 
 const gameBrainProgression = () => {
   welcome();
