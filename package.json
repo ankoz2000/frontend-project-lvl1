@@ -1,9 +1,14 @@
 {
   "name": "coldcherry",
-  "version": "3.0.1",
+  "version": "3.1.1",
   "description": "Play with your brain",
-  "keywords": ["Brain", "IQ", "Hexlet", "games", "math"],
-  "main": "src/index.js",
+  "keywords": [
+    "Brain",
+    "IQ",
+    "Hexlet",
+    "games",
+    "math"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
@@ -11,11 +16,11 @@
   },
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/games/brain-even.js",
-    "brain-calc": "dist/bin/games/brain-calc.js",
-    "brain-gcd": "dist/bin/games/brain-gcd.js",
-    "brain-progression": "dist/bin/games/brain-progression.js",
-    "brain-prime": "dist/bin/games/brain-prime.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js",
+    "brain-gcd": "dist/bin/brain-gcd.js",
+    "brain-progression": "dist/bin/brain-progression.js",
+    "brain-prime": "dist/bin/brain-prime.js"
   },
   "files": [
     "dist"
@@ -28,13 +33,12 @@
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@hexlet/pairs": "^1.0.10",
-    "eslint": "^5.16.0",
+    "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2"
   },
   "dependencies": {
     "babel-eslint": "^10.0.2",
-    "eslint-plugin-babel": "^5.3.0",
     "readline-sync": "^1.4.10"
   }
 }

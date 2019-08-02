@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-import { welcome, getUserName, brainPrime } from '../../index';
+import game from '../brain-prime';
 
-welcome();
-console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-console.log('');
-const userName = getUserName();
-brainPrime(userName);
+game();

@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-import { welcome, getUserName, brainGcd } from '../../index';
+import game from '../brain-gcd';
 
-welcome();
-console.log('Find the greatest common divisor of given numbers.');
-console.log('');
-const userName = getUserName();
-brainGcd(userName);
+game();
