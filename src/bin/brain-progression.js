@@ -1,12 +1,4 @@
 #!/usr/bin/env node
-import { welcome, getUserName, brainProgression } from '../index';
+import game from '../games/brain-progression';
 
-const gameBrainProgression = () => {
-  welcome();
-  console.log('What number is missing in the progression?');
-  console.log('');
-  const userName = getUserName();
-  brainProgression(userName);
-};
-
-export default gameBrainProgression;
+game();

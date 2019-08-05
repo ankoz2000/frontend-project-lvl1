@@ -1,12 +1,10 @@
 plugins:
-        #https://github.com/babel/eslint-plugin-babel
-        - babel
+  #https://github.com/babel/eslint-plugin-babel      
+  - babel
 env:
-  es6: true
   node: true
 parser: babel-eslint
-extends:
-  - airbnb-base
-rules: {
-        no-console: 0
-}
+extends: 
+    - airbnb-base
+rules:
+    no-console: 0
