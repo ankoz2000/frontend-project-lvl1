@@ -38,11 +38,8 @@ const checkingAnswerEven = (answer, randomInt) => {
   return false;
 };
 
-const checkingRightAnswerEven = (randomInt, number1, number2, operation) => {
+const checkingRightAnswerEven = (randomInt) => {
   if (randomInt % 2 === 0) return 'yes';
-  if (operation === '*') return number1 * number2;
-  if (operation === '+') return number1 + number2;
-  if (operation === '-') return number1 - number2;
   return 'no';
 };
 
