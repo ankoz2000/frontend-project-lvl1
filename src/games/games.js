@@ -2,12 +2,12 @@
 import {
   welcome,
   getUserName,
-  brainEven,
-  brainCalc,
-  brainGcd,
-  brainProgression,
-  brainPrime,
 } from '../index';
+import { brainEven } from './even';
+import { brainCalc } from './calc';
+import { brainGcd } from './gcd';
+import { brainProgression } from './progression';
+import { brainPrime } from './prime';
 
 export default () => {
   welcome();
