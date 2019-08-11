@@ -1,10 +1,7 @@
 import readlineSync from 'readline-sync';
 import {
-  quantityOfRightAnswers,
-  welcome,
   getUserName,
   getRandomInt,
-  congratulation,
 } from '../index';
 
 const getRandomOperation = () => {
@@ -27,25 +24,21 @@ const checkingRightAnswerCalc = (number1, number2, operation) => {
   return number1 - number2;
 };
 
-const questionCalc = (userName) => {
-  let tmp = 0;
-  do {
-    const number1 = getRandomInt(1, 100);
-    const number2 = getRandomInt(1, 100);
-    const operation = getRandomOperation();
-    console.log(`Question: ${number1} ${operation} ${number2}`);
-    const answer = readlineSync.question('Your answer: ');
-    const check = checkingAnswerCalc(answer, number1, number2, operation);
-    if (check === false) {
-      const rightAnswer = checkingRightAnswerCalc(number1, number2, operation);
-      console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
-      console.log(`Try again, ${userName}`);
-    } else {
-      tmp += 1;
-      console.log('Correct!');
-    }
-  } while (tmp !== quantityOfRightAnswers);
-  return congratulation(userName);
+export const questionCalc = (userName) => {
+  const number1 = getRandomInt(1, 100);
+  const number2 = getRandomInt(1, 100);
+  const operation = getRandomOperation();
+  console.log(`Question: ${number1} ${operation} ${number2}`);
+  const answer = readlineSync.question('Your answer: ');
+  const check = checkingAnswerCalc(answer, number1, number2, operation);
+  if (check === false) {
+    const rightAnswer = checkingRightAnswerCalc(number1, number2, operation);
+    console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
+    console.log(`Try again, ${userName}`);
+    return 0;
+  }
+  console.log('Correct!');
+  return 1;
 };
 
 export const brainCalc = (userName) => {
@@ -53,10 +46,9 @@ export const brainCalc = (userName) => {
   return userName;
 };
 
-export const gameBrainCalc = () => {
-  welcome();
-  console.log('What is the result of the expression?');
-  console.log('');
+export const gameBrainCalc = (flag) => {
+  if (flag === 1) return 2;
   const userName = getUserName();
   brainCalc(userName);
+  return 1;
 };

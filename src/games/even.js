@@ -1,10 +1,7 @@
 import readlineSync from 'readline-sync';
 import {
-  quantityOfRightAnswers,
-  welcome,
-  getUserName,
   getRandomInt,
-  congratulation,
+  gameProcess,
 } from '../index';
 
 const checkingAnswerEven = (answer, randomInt) => {
@@ -22,24 +19,19 @@ const checkingRightAnswerEven = (randomInt) => {
   return 'no';
 };
 
-const questionEven = (userName) => {
-  let tmp = 0;
-  do {
-    const randomInt = getRandomInt(1, 1000);
-    console.log(`Question: ${randomInt}`);
-    const answer = readlineSync.question('Your answer: ');
-    const check = checkingAnswerEven(answer, randomInt);
-    if (check === false) {
-      const rightAnswer = checkingRightAnswerEven(randomInt);
-      console.log(`"${answer}" is wrong answer. Right answer is "${rightAnswer}"`);
-      console.log(`Try again, ${userName}`);
-    } else {
-      tmp += 1;
-      console.log('Correct!');
-    }
-  } while (tmp !== quantityOfRightAnswers);
-  congratulation(userName);
-  return console.log('');
+export const questionEven = (userName) => {
+  const randomInt = getRandomInt(1, 1000);
+  console.log(`Question: ${randomInt}`);
+  const answer = readlineSync.question('Your answer: ');
+  const check = checkingAnswerEven(answer, randomInt);
+  if (check === false) {
+    const rightAnswer = checkingRightAnswerEven(randomInt);
+    console.log(`"${answer}" is wrong answer. Right answer is "${rightAnswer}"`);
+    console.log(`Try again, ${userName}`);
+    return 0;
+  }
+  console.log('Correct!');
+  return 1;
 };
 
 export const brainEven = (userName) => {
@@ -48,9 +40,6 @@ export const brainEven = (userName) => {
 };
 
 export const gameBrainEven = () => {
-  welcome();
-  console.log('Answer "yes" if number is even otherwise answer "no"');
-  console.log('');
-  const userName = getUserName();
-  brainEven(userName);
+  const userName = gameProcess(1, questionEven);
+  return userName;
 };

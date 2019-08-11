@@ -1,10 +1,7 @@
 import readlineSync from 'readline-sync';
 import {
-  quantityOfRightAnswers,
-  welcome,
   getUserName,
   getRandomInt,
-  congratulation,
   comparingAnswers,
 } from '../index';
 
@@ -41,21 +38,18 @@ const checkingAnswerProgression = (answer, rightAnswer) => {
   return false;
 };
 
-const questionProgression = (userName) => {
-  let tmp = 0;
-  do {
-    const quantity = 10;
-    const startNumber = getRandomInt(1, 10);
-    const step = getRandomInt(1, 10);
-    const place = getRandomInt(1, 10);
-    const string = printProgressionWithoutNumber(place, startNumber, step, quantity);
-    console.log(`Question: ${string}`);
-    const answer = readlineSync.question('Your answer: ');
-    const rightAnswer = hideNumber(place, startNumber, step);
-    const check = checkingAnswerProgression(answer, rightAnswer);
-    tmp += comparingAnswers(check, answer, rightAnswer, userName);
-  } while (tmp !== quantityOfRightAnswers);
-  return congratulation(userName);
+export const questionProgression = (userName) => {
+  const quantity = 10;
+  const startNumber = getRandomInt(1, 10);
+  const step = getRandomInt(1, 10);
+  const place = getRandomInt(1, 10);
+  const string = printProgressionWithoutNumber(place, startNumber, step, quantity);
+  console.log(`Question: ${string}`);
+  const answer = readlineSync.question('Your answer: ');
+  const rightAnswer = hideNumber(place, startNumber, step);
+  const check = checkingAnswerProgression(answer, rightAnswer);
+  if (comparingAnswers(check, answer, rightAnswer, userName) === 0) return 0;
+  return 1;
 };
 
 export const brainProgression = (userName) => {
@@ -63,10 +57,9 @@ export const brainProgression = (userName) => {
   return userName;
 };
 
-export const gameBrainProgression = () => {
-  welcome();
-  console.log('What number is missing in the progression?');
-  console.log('');
+export const gameBrainProgression = (flag) => {
+  if (flag === 1) return 3;
   const userName = getUserName();
   brainProgression(userName);
+  return 1;
 };

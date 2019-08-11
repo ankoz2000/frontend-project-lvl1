@@ -1,15 +1,12 @@
 #!/usr/bin/env node
-import {
-  welcome,
-  getUserName,
-} from '../index';
-import { brainEven } from './even';
-import { brainCalc } from './calc';
-import { brainGcd } from './gcd';
-import { brainProgression } from './progression';
-import { brainPrime } from './prime';
+import { allGameProcess } from '../index';
+import { questionEven } from './even';
+import { questionCalc } from './calc';
+import { questionGcd } from './gcd';
+import { questionProgression } from './progression';
+import { questionPrime } from './prime';
 
-export default () => {
+/* export default () => {
   welcome();
   console.log('Answer "yes" if number is even otherwise answer "no"');
   console.log('');
@@ -27,4 +24,17 @@ export default () => {
   console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
   console.log('');
   brainPrime(userName);
+}; */
+
+const allGames = () => {
+  const arrayOfGames = [
+    questionEven,
+    questionCalc,
+    questionGcd,
+    questionProgression,
+    questionPrime,
+  ];
+  allGameProcess(arrayOfGames);
 };
+
+export default allGames;

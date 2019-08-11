@@ -1,10 +1,7 @@
 import readlineSync from 'readline-sync';
 import {
-  quantityOfRightAnswers,
-  welcome,
   getUserName,
   getRandomInt,
-  congratulation,
   comparingAnswers,
 } from '../index';
 
@@ -22,17 +19,14 @@ const checkingAnswerPrime = (answer, rightAnswer) => {
   return false;
 };
 
-const questionPrime = (userName) => {
-  let tmp = 0;
-  do {
-    const number = getRandomInt(1, 100);
-    console.log(`Question: ${number}`);
-    const answer = readlineSync.question('Your answer: ');
-    const rightAnswer = isPrime(number) ? 'yes' : 'no';
-    const check = checkingAnswerPrime(answer, rightAnswer);
-    tmp += comparingAnswers(check, answer, rightAnswer, userName);
-  } while (tmp !== quantityOfRightAnswers);
-  return congratulation(userName);
+export const questionPrime = (userName) => {
+  const number = getRandomInt(1, 100);
+  console.log(`Question: ${number}`);
+  const answer = readlineSync.question('Your answer: ');
+  const rightAnswer = isPrime(number) ? 'yes' : 'no';
+  const check = checkingAnswerPrime(answer, rightAnswer);
+  if (comparingAnswers(check, answer, rightAnswer, userName) === 0) return 0;
+  return 1;
 };
 
 export const brainPrime = (userName) => {
@@ -40,10 +34,9 @@ export const brainPrime = (userName) => {
   return userName;
 };
 
-export const gameBrainPrime = () => {
-  welcome();
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-  console.log('');
+export const gameBrainPrime = (flag) => {
+  if (flag === 1) return 5;
   const userName = getUserName();
   brainPrime(userName);
+  return userName;
 };
