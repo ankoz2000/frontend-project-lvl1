@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { questionCalc } from '../games/calc';
-import { gameProcess } from '../index';
+import { brainCalc } from '../games/calc';
 
-gameProcess(1, questionCalc);
+brainCalc();

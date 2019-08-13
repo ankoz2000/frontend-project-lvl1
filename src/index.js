@@ -27,11 +27,20 @@ export const comparingAnswers = (check, answer, rightAnswer, userName) => {
   if (check === false) {
     console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
     console.log(`Try again, ${userName}`);
-  } else {
-    console.log('Correct!');
-    return 1;
+    return 0;
   }
-  return 0;
+  console.log('Correct!');
+  return 1;
+};
+
+export const playingRounds = (check, answer, rightAnswer, userName) => {
+  if (check === false) {
+    console.log(`"${answer}" is wrong answer. Right answer is "${rightAnswer}"`);
+    console.log(`Try again, ${userName}`);
+    return 0;
+  }
+  console.log('Correct!');
+  return 1;
 };
 
 const getRulesAndUserName = (numberOfGame) => {

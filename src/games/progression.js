@@ -1,16 +1,18 @@
 import readlineSync from 'readline-sync';
 import {
-  getUserName,
   getRandomInt,
-  comparingAnswers,
+  playingRounds,
+  gameProcess,
 } from '../index';
 
-const hideNumber = (place, startNumber, step) => {
+const gameNumberProgression = 3;
+
+const hiddenNumber = (place, startNumber, step) => {
   let number = startNumber;
   for (let i = 0; i < place; i += 1) {
     number += step;
   }
-  return Number(number);
+  return number;
 };
 
 const printProgressionWithoutNumber = (place, startNumber, step, quantity) => {
@@ -46,20 +48,13 @@ export const questionProgression = (userName) => {
   const string = printProgressionWithoutNumber(place, startNumber, step, quantity);
   console.log(`Question: ${string}`);
   const answer = readlineSync.question('Your answer: ');
-  const rightAnswer = hideNumber(place, startNumber, step);
+  const rightAnswer = hiddenNumber(place, startNumber, step);
   const check = checkingAnswerProgression(answer, rightAnswer);
-  if (comparingAnswers(check, answer, rightAnswer, userName) === 0) return 0;
-  return 1;
+  const isWin = playingRounds(check, answer, rightAnswer, userName);
+  return isWin;
 };
 
-export const brainProgression = (userName) => {
-  questionProgression(userName);
+export const brainProgression = () => {
+  const userName = gameProcess(gameNumberProgression, questionProgression);
   return userName;
-};
-
-export const gameBrainProgression = (flag) => {
-  if (flag === 1) return 3;
-  const userName = getUserName();
-  brainProgression(userName);
-  return 1;
 };

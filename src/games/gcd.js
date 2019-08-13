@@ -1,8 +1,11 @@
 import readlineSync from 'readline-sync';
 import {
-  getUserName,
   getRandomInt,
+  playingRounds,
+  gameProcess,
 } from '../index';
+
+const gameNumberGcd = 2;
 
 const findGcd = (number1, number2) => {
   const greatestNumber = number1 > number2 ? number1 : number2;
@@ -23,23 +26,12 @@ export const questionGcd = (userName) => {
   console.log(`Question: ${number1} ${number2}`);
   const answer = readlineSync.question('Your answer: ');
   const check = checkingAnswerGcd(answer, number1, number2);
-  if (check === false) {
-    const rightAnswer = findGcd(number1, number2);
-    console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
-    console.log(`Try again, ${userName}`);
-    return 0;
-  }
-  return 1;
+  const rightAnswer = findGcd(number1, number2);
+  const isWin = playingRounds(check, answer, rightAnswer, userName);
+  return isWin;
 };
 
-export const brainGcd = (userName) => {
-  questionGcd(userName);
+export const brainGcd = () => {
+  const userName = gameProcess(gameNumberGcd, questionGcd);
   return userName;
-};
-
-export const gameBrainGcd = (flag) => {
-  if (flag === 1) return 4;
-  const userName = getUserName();
-  brainGcd(userName);
-  return 1;
 };

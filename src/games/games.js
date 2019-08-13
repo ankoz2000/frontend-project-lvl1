@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { allGameProcess } from '../index';
+import { allGameProcess } from '..';
 import { questionEven } from './even';
 import { questionCalc } from './calc';
 import { questionGcd } from './gcd';
