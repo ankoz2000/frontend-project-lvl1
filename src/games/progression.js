@@ -1,11 +1,14 @@
 import readlineSync from 'readline-sync';
 import {
   getRandomInt,
-  playingRounds,
+  playRounds,
   gameProcess,
-} from '../index';
+} from '..';
 
-const gameNumberProgression = 3;
+const getRulesProgression = () => {
+  console.log('What number is missing in the progression?');
+  console.log('');
+};
 
 const hiddenNumber = (place, startNumber, step) => {
   let number = startNumber;
@@ -50,11 +53,11 @@ export const questionProgression = (userName) => {
   const answer = readlineSync.question('Your answer: ');
   const rightAnswer = hiddenNumber(place, startNumber, step);
   const check = checkingAnswerProgression(answer, rightAnswer);
-  const isWin = playingRounds(check, answer, rightAnswer, userName);
+  const isWin = playRounds(check, answer, rightAnswer, userName);
   return isWin;
 };
 
-export const brainProgression = () => {
-  const userName = gameProcess(gameNumberProgression, questionProgression);
-  return userName;
+export const brainProgression = (flag = 0, userName) => {
+  const localName = gameProcess(getRulesProgression, questionProgression, flag, userName);
+  return localName;
 };

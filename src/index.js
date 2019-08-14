@@ -1,13 +1,13 @@
 import readlineSync from 'readline-sync';
 
-export const quantityOfRightAnswers = 3;
-const quantityOfGames = 5;
+const rightAnswersCount = 3;
+const gamesCount = 5;
 
 const welcome = () => {
   console.log('Welcome to the brain-games!');
 };
 
-export const getUserName = () => {
+const getUserName = () => {
   const userName = readlineSync.question('What is your name? ');
   console.log(`Hello, ${userName}!`);
   return userName;
@@ -23,9 +23,9 @@ const congratulation = (userName) => {
   return userName;
 };
 
-export const comparingAnswers = (check, answer, rightAnswer, userName) => {
+export const playRounds = (check, userAnswer, rightAnswer, userName) => {
   if (check === false) {
-    console.log(`"${answer}" is wrong answer. Right answer is ${rightAnswer}`);
+    console.log(`"${userAnswer}" is wrong answer. Right answer is "${rightAnswer}"`);
     console.log(`Try again, ${userName}`);
     return 0;
   }
@@ -33,90 +33,56 @@ export const comparingAnswers = (check, answer, rightAnswer, userName) => {
   return 1;
 };
 
-export const playingRounds = (check, answer, rightAnswer, userName) => {
-  if (check === false) {
-    console.log(`"${answer}" is wrong answer. Right answer is "${rightAnswer}"`);
-    console.log(`Try again, ${userName}`);
-    return 0;
-  }
-  console.log('Correct!');
-  return 1;
+const isShowMessage = (flag) => {
+  if (flag !== 1 && flag !== 3) return true;
+  return false;
 };
 
-const getRulesAndUserName = (numberOfGame) => {
-  if (numberOfGame === 0) {
-    console.log('Answer "yes" if number is even otherwise answer "no"');
-    console.log('');
+const showCongratulation = (flag, userName) => {
+  switch (flag) {
+    case 0: {
+      congratulation(userName);
+      break;
+    }
+    case 1: break;
+    case 2: break;
+    default: {
+      congratulation(userName);
+    }
   }
-  if (numberOfGame === 1) {
-    console.log('What is the result of the expression?');
-    console.log('');
-  }
-  if (numberOfGame === 2) {
-    console.log('Find the greatest common divisor of given numbers.');
-    console.log('');
-  }
-  if (numberOfGame === 3) {
-    console.log('What number is missing in the progression?');
-    console.log('');
-  }
-  if (numberOfGame === 4) {
-    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-    console.log('');
-  }
-  const userName = getUserName();
-  return userName;
 };
 
-export const getGameNumber = num => num;
-
-export const gameProcess = (number, game) => {
+export const gameProcess = (getRules, game, flag, userName) => {
   let tmp = 0;
-  const gameNumber = getGameNumber(number);
-  welcome();
-  const userName = getRulesAndUserName(gameNumber);
+  let localUserName = userName;
+  if (isShowMessage(flag)) {
+    welcome();
+  }
+  getRules();
+  if (isShowMessage(flag)) {
+    localUserName = getUserName();
+  }
   do {
-    tmp += game(userName);
-  } while (tmp !== quantityOfRightAnswers);
-  return congratulation(userName);
+    tmp += game(localUserName);
+  } while (tmp !== rightAnswersCount);
+  showCongratulation(flag, localUserName);
+  return localUserName;
 };
 
-const getRulesForAllGames = (numberOfGame) => {
-  if (numberOfGame === 0) {
-    console.log('Answer "yes" if number is even otherwise answer "no"');
-    console.log('');
-  }
-  if (numberOfGame === 1) {
-    console.log('What is the result of the expression?');
-    console.log('');
-  }
-  if (numberOfGame === 2) {
-    console.log('Find the greatest common divisor of given numbers.');
-    console.log('');
-  }
-  if (numberOfGame === 3) {
-    console.log('What number is missing in the progression?');
-    console.log('');
-  }
-  if (numberOfGame === 4) {
-    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-    console.log('');
-  }
-};
 
 export const allGameProcess = (arrayOfGames) => {
   let userName = '';
-  welcome();
-  for (let number = 0; number < quantityOfGames; number += 1) {
-    let tmp = 0;
-    const gameNumber = getGameNumber(number);
-    if (number === 0) {
-      userName = getRulesAndUserName(gameNumber);
+  let flag = 2; // if flag = 2 user see welcome and meeting messages, but not congratulations;
+  for (let i = 0; i < gamesCount; i += 1) {
+    if (i === gamesCount - 1) flag = 3; // if flag = 3 user see only congratulations;
+    /*   take user's name and
+    save it in a variable (line 77)    */
+    if (flag === 2) {
+      userName = arrayOfGames[i](flag, userName);
+      flag = 1; // user doesn't see anything;
+    } else {
+      arrayOfGames[i](flag, userName);
     }
-    if (number !== 0) getRulesForAllGames(gameNumber);
-    do {
-      tmp += arrayOfGames[number](userName);
-    } while (tmp !== quantityOfRightAnswers);
   }
-  return congratulation(userName);
+  return userName;
 };

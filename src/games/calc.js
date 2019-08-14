@@ -1,11 +1,14 @@
 import readlineSync from 'readline-sync';
 import {
   getRandomInt,
-  playingRounds,
+  playRounds,
   gameProcess,
-} from '../index';
+} from '..';
 
-const gameNumberCalc = 1;
+const getRulesCalc = () => {
+  console.log('What is the result of the expression?');
+  console.log('');
+};
 
 const getRandomOperation = () => {
   const randomInt = getRandomInt(1, 90);
@@ -35,11 +38,11 @@ export const questionCalc = (userName) => {
   const answer = readlineSync.question('Your answer: ');
   const check = checkingAnswerCalc(answer, number1, number2, operation);
   const rightAnswer = checkingRightAnswerCalc(number1, number2, operation);
-  const isWin = playingRounds(check, answer, rightAnswer, userName);
+  const isWin = playRounds(check, answer, rightAnswer, userName);
   return isWin;
 };
 
-export const brainCalc = () => {
-  const userName = gameProcess(gameNumberCalc, questionCalc);
-  return userName;
+export const brainCalc = (flag = 0, userName) => {
+  const localName = gameProcess(getRulesCalc, questionCalc, flag, userName);
+  return localName;
 };

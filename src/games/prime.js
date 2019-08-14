@@ -1,11 +1,14 @@
 import readlineSync from 'readline-sync';
 import {
   getRandomInt,
-  playingRounds,
+  playRounds,
   gameProcess,
-} from '../index';
+} from '..';
 
-const gameNumberPrime = 4;
+const getRulesPrime = () => {
+  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+  console.log('');
+};
 
 const isPrime = (number) => {
   if (number % 2 === 0 || number === 2 || number === 1) return false; // Any even numper is compound
@@ -27,11 +30,11 @@ export const questionPrime = (userName) => {
   const answer = readlineSync.question('Your answer: ');
   const rightAnswer = isPrime(number) ? 'yes' : 'no';
   const check = checkingAnswerPrime(answer, rightAnswer);
-  const isWin = playingRounds(check, answer, rightAnswer, userName);
+  const isWin = playRounds(check, answer, rightAnswer, userName);
   return isWin;
 };
 
-export const brainPrime = () => {
-  const userName = gameProcess(gameNumberPrime, questionPrime);
-  return userName;
+export const brainPrime = (flag = 0, userName) => {
+  const localName = gameProcess(getRulesPrime, questionPrime, flag, userName);
+  return localName;
 };

@@ -1,11 +1,14 @@
 import readlineSync from 'readline-sync';
 import {
   getRandomInt,
-  playingRounds,
+  playRounds,
   gameProcess,
-} from '../index';
+} from '..';
 
-const gameNumberGcd = 2;
+const getRulesGcd = () => {
+  console.log('Find the greatest common divisor of given numbers.');
+  console.log('');
+};
 
 const findGcd = (number1, number2) => {
   const greatestNumber = number1 > number2 ? number1 : number2;
@@ -27,11 +30,11 @@ export const questionGcd = (userName) => {
   const answer = readlineSync.question('Your answer: ');
   const check = checkingAnswerGcd(answer, number1, number2);
   const rightAnswer = findGcd(number1, number2);
-  const isWin = playingRounds(check, answer, rightAnswer, userName);
+  const isWin = playRounds(check, answer, rightAnswer, userName);
   return isWin;
 };
 
-export const brainGcd = () => {
-  const userName = gameProcess(gameNumberGcd, questionGcd);
-  return userName;
+export const brainGcd = (flag = 0, userName) => {
+  const localName = gameProcess(getRulesGcd, questionGcd, flag, userName);
+  return localName;
 };

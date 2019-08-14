@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { allGameProcess } from '..';
-import { questionEven } from './even';
-import { questionCalc } from './calc';
-import { questionGcd } from './gcd';
-import { questionProgression } from './progression';
-import { questionPrime } from './prime';
+import { brainEven } from './even';
+import { brainCalc } from './calc';
+import { brainGcd } from './gcd';
+import { brainProgression } from './progression';
+import { brainPrime } from './prime';
 
 /* export default () => {
   welcome();
@@ -28,11 +28,11 @@ import { questionPrime } from './prime';
 
 const allGames = () => {
   const arrayOfGames = [
-    questionEven,
-    questionCalc,
-    questionGcd,
-    questionProgression,
-    questionPrime,
+    brainEven,
+    brainCalc,
+    brainGcd,
+    brainProgression,
+    brainPrime,
   ];
   allGameProcess(arrayOfGames);
 };
