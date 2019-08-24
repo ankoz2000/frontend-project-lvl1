@@ -43,21 +43,18 @@ const checkingAnswerProgression = (answer, rightAnswer) => {
   return false;
 };
 
-export const questionProgression = (userName) => {
+export const questionProgression = () => {
   const quantity = 10;
   const startNumber = getRandomInt(1, 10);
   const step = getRandomInt(1, 10);
   const place = getRandomInt(1, 10);
   const string = printProgressionWithoutNumber(place, startNumber, step, quantity);
   console.log(`Question: ${string}`);
-  const answer = readlineSync.question('Your answer: ');
   const rightAnswer = hiddenNumber(place, startNumber, step);
-  const check = checkingAnswerProgression(answer, rightAnswer);
-  const isWin = playRounds(check, answer, rightAnswer, userName);
-  return isWin;
+  return rightAnswer;
 };
 
 export const brainProgression = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesProgression, questionProgression, flag, userName);
+  const localName = gameProcess(getRulesProgression, flag, userName, questionProgression);
   return localName;
 };

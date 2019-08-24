@@ -24,17 +24,14 @@ const checkingAnswerPrime = (answer, rightAnswer) => {
   return false;
 };
 
-export const questionPrime = (userName) => {
+export const questionPrime = () => {
   const number = getRandomInt(1, 100);
   console.log(`Question: ${number}`);
-  const answer = readlineSync.question('Your answer: ');
   const rightAnswer = isPrime(number) ? 'yes' : 'no';
-  const check = checkingAnswerPrime(answer, rightAnswer);
-  const isWin = playRounds(check, answer, rightAnswer, userName);
-  return isWin;
+  return rightAnswer;
 };
 
 export const brainPrime = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesPrime, questionPrime, flag, userName);
+  const localName = gameProcess(getRulesPrime, flag, userName, questionPrime);
   return localName;
 };

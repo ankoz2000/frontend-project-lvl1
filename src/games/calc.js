@@ -1,4 +1,3 @@
-import readlineSync from 'readline-sync';
 import {
   getRandomInt,
   playRounds,
@@ -17,12 +16,8 @@ const getRandomOperation = () => {
   return '-';
 };
 
-const checkingAnswerCalc = (answer, number1, number2, operation) => {
-  if (operation === '*' && answer === String(number1 * number2)) return true;
-  if (operation === '+' && answer === String(number1 + number2)) return true;
-  if (operation === '-' && answer === String(number1 - number2)) return true;
-  return false;
-};
+const checkingAnswerCalc = (answer, rightAnswer) => answer === rightAnswer;
+
 
 const checkingRightAnswerCalc = (number1, number2, operation) => {
   if (operation === '*') return number1 * number2;
@@ -42,7 +37,17 @@ export const questionCalc = (userName) => {
   return isWin;
 };
 
+export const questCalc = () => {
+  const number1 = getRandomInt(1, 100);
+  const number2 = getRandomInt(1, 100);
+  const operation = getRandomOperation();
+  console.log(`Question: ${number1} ${operation} ${number2}`);
+  const rightAnswer = checkingRightAnswerCalc(number1, number2, operation);
+  return rightAnswer;
+};
+
+
 export const brainCalc = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesCalc, questionCalc, flag, userName);
+  const localName = gameProcess(getRulesCalc, flag, userName, questCalc);
   return localName;
 };

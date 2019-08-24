@@ -1,4 +1,3 @@
-import readlineSync from 'readline-sync';
 import {
   getRandomInt,
   playRounds,
@@ -34,7 +33,15 @@ export const questionGcd = (userName) => {
   return isWin;
 };
 
+export const questGcd = () => {
+  const number1 = getRandomInt(1, 100);
+  const number2 = getRandomInt(1, 100);
+  console.log(`Question: ${number1} ${number2}`);
+  const rightAnswer = findGcd(number1, number2);
+  return rightAnswer;
+};
+
 export const brainGcd = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesGcd, questionGcd, flag, userName);
+  const localName = gameProcess(getRulesGcd, flag, userName, questGcd);
   return localName;
 };

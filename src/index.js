@@ -13,10 +13,17 @@ const getUserName = () => {
   return userName;
 };
 
+export const getUserAnswer = () => {
+  const answer = readlineSync.question('Your answer: ');
+  return answer;
+};
+
 export const getRandomInt = (min, max) => {
   const number = Math.floor(Math.random() * (max - min + 1)) + min;
   return number;
 };
+
+const isAnswerRight = (answer, rightAnswer) => answer === String(rightAnswer);
 
 const congratulation = (userName) => {
   console.log(`Congratulations, ${userName}!`);
@@ -52,37 +59,41 @@ const showCongratulation = (flag, userName) => {
   }
 };
 
-export const gameProcess = (getRules, game, flag, userName) => {
+export const gameProcess = (gameRules, flag, userName, gameQuestion) => {
   let tmp = 0;
   let localUserName = userName;
   if (isShowMessage(flag)) {
     welcome();
   }
-  getRules();
+  gameRules();
   if (isShowMessage(flag)) {
     localUserName = getUserName();
   }
   do {
-    tmp += game(localUserName);
+    const rightAnswer = gameQuestion(localUserName);
+    const answer = readlineSync.question('Your answer: ');
+    const check = isAnswerRight(answer, rightAnswer);
+    tmp += playRounds(check, answer, rightAnswer, localUserName);
   } while (tmp !== rightAnswersCount);
   showCongratulation(flag, localUserName);
   return localUserName;
 };
 
-
 export const allGameProcess = (arrayOfGames) => {
   let userName = '';
   let flag = 2; // if flag = 2 user see welcome and meeting messages, but not congratulations;
   for (let i = 0; i < gamesCount; i += 1) {
+    console.log(`${flag}`);
     if (i === gamesCount - 1) flag = 3; // if flag = 3 user see only congratulations;
     /*   take user's name and
-    save it in a variable (line 77)    */
+    save it in a variable (line 88)    */
     if (flag === 2) {
       userName = arrayOfGames[i](flag, userName);
       flag = 1; // user doesn't see anything;
     } else {
       arrayOfGames[i](flag, userName);
     }
+    console.log(`${flag}`);
   }
   return userName;
 };
