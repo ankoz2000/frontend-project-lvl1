@@ -1,6 +1,5 @@
 import {
   getRandomInt,
-  playRounds,
   gameProcess,
 } from '..';
 
@@ -17,23 +16,7 @@ const findGcd = (number1, number2) => {
   return greatestNumber;
 };
 
-const checkingAnswerGcd = (answer, number1, number2) => {
-  if (answer === String(findGcd(number1, number2))) return true;
-  return false;
-};
-
-export const questionGcd = (userName) => {
-  const number1 = getRandomInt(1, 100);
-  const number2 = getRandomInt(1, 100);
-  console.log(`Question: ${number1} ${number2}`);
-  const answer = readlineSync.question('Your answer: ');
-  const check = checkingAnswerGcd(answer, number1, number2);
-  const rightAnswer = findGcd(number1, number2);
-  const isWin = playRounds(check, answer, rightAnswer, userName);
-  return isWin;
-};
-
-export const questGcd = () => {
+export const questionGcd = () => {
   const number1 = getRandomInt(1, 100);
   const number2 = getRandomInt(1, 100);
   console.log(`Question: ${number1} ${number2}`);
@@ -42,6 +25,6 @@ export const questGcd = () => {
 };
 
 export const brainGcd = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesGcd, flag, userName, questGcd);
+  const localName = gameProcess(getRulesGcd, flag, userName, questionGcd);
   return localName;
 };

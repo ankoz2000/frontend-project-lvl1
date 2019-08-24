@@ -1,7 +1,5 @@
-import readlineSync from 'readline-sync';
 import {
   getRandomInt,
-  playRounds,
   gameProcess,
 } from '..';
 
@@ -36,11 +34,6 @@ const printProgressionWithoutNumber = (place, startNumber, step, quantity) => {
     }
   }
   return str;
-};
-
-const checkingAnswerProgression = (answer, rightAnswer) => {
-  if (answer === String(rightAnswer)) return true;
-  return false;
 };
 
 export const questionProgression = () => {

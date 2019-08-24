@@ -1,6 +1,5 @@
 import {
   getRandomInt,
-  playRounds,
   gameProcess,
 } from '..';
 
@@ -16,28 +15,13 @@ const getRandomOperation = () => {
   return '-';
 };
 
-const checkingAnswerCalc = (answer, rightAnswer) => answer === rightAnswer;
-
-
 const checkingRightAnswerCalc = (number1, number2, operation) => {
   if (operation === '*') return number1 * number2;
   if (operation === '+') return number1 + number2;
   return number1 - number2;
 };
 
-export const questionCalc = (userName) => {
-  const number1 = getRandomInt(1, 100);
-  const number2 = getRandomInt(1, 100);
-  const operation = getRandomOperation();
-  console.log(`Question: ${number1} ${operation} ${number2}`);
-  const answer = readlineSync.question('Your answer: ');
-  const check = checkingAnswerCalc(answer, number1, number2, operation);
-  const rightAnswer = checkingRightAnswerCalc(number1, number2, operation);
-  const isWin = playRounds(check, answer, rightAnswer, userName);
-  return isWin;
-};
-
-export const questCalc = () => {
+export const questionCalc = () => {
   const number1 = getRandomInt(1, 100);
   const number2 = getRandomInt(1, 100);
   const operation = getRandomOperation();
@@ -48,6 +32,6 @@ export const questCalc = () => {
 
 
 export const brainCalc = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesCalc, flag, userName, questCalc);
+  const localName = gameProcess(getRulesCalc, flag, userName, questionCalc);
   return localName;
 };

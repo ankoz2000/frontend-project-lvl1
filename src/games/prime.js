@@ -1,7 +1,5 @@
-import readlineSync from 'readline-sync';
 import {
   getRandomInt,
-  playRounds,
   gameProcess,
 } from '..';
 
@@ -17,11 +15,6 @@ const isPrime = (number) => {
     if (number % i === 0) return false;
   }
   return true;
-};
-
-const checkingAnswerPrime = (answer, rightAnswer) => {
-  if (answer === String(rightAnswer)) return true;
-  return false;
 };
 
 export const questionPrime = () => {

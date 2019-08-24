@@ -1,6 +1,5 @@
 import {
   getRandomInt,
-  playRounds,
   gameProcess,
 } from '..';
 
@@ -16,17 +15,7 @@ export const getRulesEven = () => {
 
 const isAnswerRight = (answer, rightAnswer) => answer === rightAnswer;
 
-export const questionEven = (userName) => {
-  const question = getRandomInt(1, 1000);
-  console.log(`Question: ${question}`);
-  // const answer = readlineSync.question('Your answer: '); //  xxx
-  const rightAnswer = isEven(question) ? 'yes' : 'no';
-  // const check = isAnswerRight(answer, rightAnswer); // xxx
-  const isWin = playRounds(check, answer, rightAnswer, userName);
-  return isWin;
-};
-
-export const questEven = () => {
+export const questionEven = () => {
   const question = getRandomInt(1, 1000);
   console.log(`Question: ${question}`);
   const rightAnswer = isEven(question) ? 'yes' : 'no';
@@ -39,6 +28,6 @@ export const checkEven = (answer, rightAnswer) => {
 };
 
 export const brainEven = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesEven, flag, userName, questEven);
+  const localName = gameProcess(getRulesEven, flag, userName, questionEven);
   return localName;
 };
