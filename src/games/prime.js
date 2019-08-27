@@ -1,12 +1,6 @@
-import {
-  getRandomInt,
-  gameProcess,
-} from '..';
+import { getRandomInt, gameProcess } from '..';
 
-const getRulesPrime = () => {
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-  console.log('');
-};
+const primeRules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (number) => {
   if (number % 2 === 0 || number === 2 || number === 1) return false; // Any even numper is compound
@@ -25,6 +19,6 @@ export const questionPrime = () => {
 };
 
 export const brainPrime = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesPrime, flag, userName, questionPrime);
+  const localName = gameProcess(primeRules, flag, userName, questionPrime);
   return localName;
 };

@@ -1,12 +1,6 @@
-import {
-  getRandomInt,
-  gameProcess,
-} from '..';
+import { getRandomInt, gameProcess } from '..';
 
-const getRulesProgression = () => {
-  console.log('What number is missing in the progression?');
-  console.log('');
-};
+const progressionRules = 'What number is missing in the progression?';
 
 const hiddenNumber = (place, startNumber, step) => {
   let number = startNumber;
@@ -48,6 +42,6 @@ export const questionProgression = () => {
 };
 
 export const brainProgression = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesProgression, flag, userName, questionProgression);
+  const localName = gameProcess(progressionRules, flag, userName, questionProgression);
   return localName;
 };

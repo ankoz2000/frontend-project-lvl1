@@ -65,7 +65,8 @@ export const gameProcess = (gameRules, flag, userName, gameQuestion) => {
   if (isShowMessage(flag)) {
     welcome();
   }
-  gameRules();
+  console.log(`${gameRules}`);
+  console.log('');
   if (isShowMessage(flag)) {
     localUserName = getUserName();
   }

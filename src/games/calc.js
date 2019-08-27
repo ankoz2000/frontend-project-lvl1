@@ -1,12 +1,6 @@
-import {
-  getRandomInt,
-  gameProcess,
-} from '..';
+import { getRandomInt, gameProcess } from '..';
 
-const getRulesCalc = () => {
-  console.log('What is the result of the expression?');
-  console.log('');
-};
+const calcRules = 'What is the result of the expression?';
 
 const getRandomOperation = () => {
   const randomInt = getRandomInt(1, 90);
@@ -32,6 +26,6 @@ export const questionCalc = () => {
 
 
 export const brainCalc = (flag = 0, userName) => {
-  const localName = gameProcess(getRulesCalc, flag, userName, questionCalc);
+  const localName = gameProcess(calcRules, flag, userName, questionCalc);
   return localName;
 };
