@@ -1,6 +1,6 @@
 import { getRandomInt, gameProcess } from '..';
 
-const gcdRules = 'Find the greatest common divisor of given numbers.';
+const gcdDescription = 'Find the greatest common divisor of given numbers.';
 
 const findGcd = (number1, number2) => {
   const greatestNumber = number1 > number2 ? number1 : number2;
@@ -10,7 +10,19 @@ const findGcd = (number1, number2) => {
   return greatestNumber;
 };
 
-export const questionGcd = () => {
+const questionGcd = () => {
+  const number1 = getRandomInt(1, 100);
+  const number2 = getRandomInt(1, 100);
+  const question = `${number1} ${number2}`;
+  const rightAnswerGcd = findGcd(number1, number2);
+  return [question, rightAnswerGcd];
+};
+
+const brainGcd = () => gameProcess(gcdDescription, questionGcd);
+
+export default brainGcd;
+
+/* export const questionGcd = () => {
   const number1 = getRandomInt(1, 100);
   const number2 = getRandomInt(1, 100);
   console.log(`Question: ${number1} ${number2}`);
@@ -21,4 +33,4 @@ export const questionGcd = () => {
 export const brainGcd = (flag = 0, userName) => {
   const localName = gameProcess(gcdRules, flag, userName, questionGcd);
   return localName;
-};
+}; */

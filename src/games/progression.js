@@ -1,6 +1,6 @@
 import { getRandomInt, gameProcess } from '..';
 
-const progressionRules = 'What number is missing in the progression?';
+const progressionDescription = 'What number is missing in the progression?';
 
 const hiddenNumber = (place, startNumber, step) => {
   let number = startNumber;
@@ -30,7 +30,23 @@ const printProgressionWithoutNumber = (place, startNumber, step, quantity) => {
   return str;
 };
 
-export const questionProgression = () => {
+const questionProgression = () => {
+  const quantity = 10;
+  const startNumber = getRandomInt(1, 10);
+  const step = getRandomInt(1, 10);
+  const place = getRandomInt(1, 10);
+  const question = printProgressionWithoutNumber(place, startNumber, step, quantity);
+  const rightAnswerProgression = hiddenNumber(place, startNumber, step);
+  return [question, rightAnswerProgression];
+};
+
+const brainProgression = () => {
+  gameProcess(progressionDescription, questionProgression);
+};
+
+export default brainProgression;
+
+/* export const questionProgression = () => {
   const quantity = 10;
   const startNumber = getRandomInt(1, 10);
   const step = getRandomInt(1, 10);
@@ -44,4 +60,4 @@ export const questionProgression = () => {
 export const brainProgression = (flag = 0, userName) => {
   const localName = gameProcess(progressionRules, flag, userName, questionProgression);
   return localName;
-};
+}; */

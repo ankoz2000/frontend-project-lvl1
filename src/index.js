@@ -13,10 +13,10 @@ const getUserName = () => {
   return userName;
 };
 
-export const getUserAnswer = () => {
+/* export const getUserAnswer = () => {
   const answer = readlineSync.question('Your answer: ');
   return answer;
-};
+}; */
 
 export const getRandomInt = (min, max) => {
   const number = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -40,12 +40,12 @@ export const playRounds = (check, userAnswer, rightAnswer, userName) => {
   return 1;
 };
 
-const isShowMessage = (flag) => {
+/* const isShowMessage = (flag) => {
   if (flag !== 1 && flag !== 3) return true;
   return false;
-};
+}; */
 
-const showCongratulation = (flag, userName) => {
+/* const showCongratulation = (flag, userName) => {
   switch (flag) {
     case 0: {
       congratulation(userName);
@@ -57,27 +57,24 @@ const showCongratulation = (flag, userName) => {
       congratulation(userName);
     }
   }
-};
+}; */
 
-export const gameProcess = (gameRules, flag, userName, gameQuestion) => {
+export const gameProcess = (gameDescription, gameQuestion) => {
   let tmp = 0;
-  let localUserName = userName;
-  if (isShowMessage(flag)) {
-    welcome();
-  }
-  console.log(`${gameRules}`);
+  welcome();
+  console.log(`${gameDescription}`);
   console.log('');
-  if (isShowMessage(flag)) {
-    localUserName = getUserName();
-  }
+  const userName = getUserName();
   do {
-    const rightAnswer = gameQuestion(localUserName);
+    const question = gameQuestion();
+    console.log(`Question: ${question[0]}`); // question[] - array, first statement - question string
     const answer = readlineSync.question('Your answer: ');
+    const rightAnswer = question[1]; // second - right answer
     const check = isAnswerRight(answer, rightAnswer);
-    tmp += playRounds(check, answer, rightAnswer, localUserName);
+    tmp += playRounds(check, answer, rightAnswer, userName);
   } while (tmp !== rightAnswersCount);
-  showCongratulation(flag, localUserName);
-  return localUserName;
+  congratulation(userName);
+  return userName;
 };
 
 export const allGameProcess = (arrayOfGames) => {
@@ -98,3 +95,24 @@ export const allGameProcess = (arrayOfGames) => {
   }
   return userName;
 };
+
+/* export const gameProcess = (gameRules, flag, userName, gameQuestion) => {
+  let tmp = 0;
+  let localUserName = userName;
+  if (isShowMessage(flag)) {
+    welcome();
+  }
+  console.log(`${gameRules}`);
+  console.log('');
+  if (isShowMessage(flag)) {
+    localUserName = getUserName();
+  }
+  do {
+    const rightAnswer = gameQuestion(localUserName);
+    const answer = readlineSync.question('Your answer: ');
+    const check = isAnswerRight(answer, rightAnswer);
+    tmp += playRounds(check, answer, rightAnswer, localUserName);
+  } while (tmp !== rightAnswersCount);
+  showCongratulation(flag, localUserName);
+  return localUserName;
+}; */
