@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-import { allGameProcess } from '..';
-import { brainEven } from './even';
-import { brainCalc } from './calc';
-import { brainGcd } from './gcd';
-import { brainProgression } from './progression';
-import { brainPrime } from './prime';
+import allGameProcess from '..';
+import brainEven from './even';
+import brainCalc from './calc';
+import brainGcd from './gcd';
+import brainProgression from './progression';
+import brainPrime from './prime';
 
 /* export default () => {
   welcome();
