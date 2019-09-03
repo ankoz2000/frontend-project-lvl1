@@ -1,7 +1,6 @@
 import readlineSync from 'readline-sync';
 
-const rightAnswersCount = 3;
-const gamesCount = 5;
+const roundsCount = 3;
 
 const welcome = () => {
   console.log('Welcome to the brain-games!');
@@ -30,14 +29,28 @@ const congratulation = (userName) => {
   return userName;
 };
 
-export const playRounds = (check, userAnswer, rightAnswer, userName) => {
-  if (check === false) {
-    console.log(`"${userAnswer}" is wrong answer. Right answer is "${rightAnswer}"`);
-    console.log(`Try again, ${userName}`);
-    return 0;
+export const gameProcess = (gameDescription, gameQuestion) => {
+  welcome();
+  console.log(`${gameDescription}`);
+  console.log('');
+  const userName = getUserName();
+  for (let i = 0; i < roundsCount;) {
+    const question = gameQuestion();
+    const questionString = question[0]; // question[0] - question string
+    console.log(`Question: ${questionString}`);
+    const answer = readlineSync.question('Your answer: ');
+    const rightAnswer = question[1]; // question[1] - right answer
+    const check = isAnswerRight(answer, rightAnswer);
+    if (!check) { // to show messages of falling round used boolean 'check'
+      console.log(`"${answer}" is wrong answer. Right answer is "${rightAnswer}"`);
+      console.log(`Try again, ${userName}`);
+    } else if (check) {
+      console.log('Correct!');
+      i += 1;
+    }
   }
-  console.log('Correct!');
-  return 1;
+  congratulation(userName);
+  return userName;
 };
 
 /* const isShowMessage = (flag) => {
@@ -59,24 +72,7 @@ export const playRounds = (check, userAnswer, rightAnswer, userName) => {
   }
 }; */
 
-export const gameProcess = (gameDescription, gameQuestion) => {
-  let tmp = 0;
-  welcome();
-  console.log(`${gameDescription}`);
-  console.log('');
-  const userName = getUserName();
-  do {
-    const question = gameQuestion();
-    console.log(`Question: ${question[0]}`); // question[] - array, first statement - question string
-    const answer = readlineSync.question('Your answer: ');
-    const rightAnswer = question[1]; // second - right answer
-    const check = isAnswerRight(answer, rightAnswer);
-    tmp += playRounds(check, answer, rightAnswer, userName);
-  } while (tmp !== rightAnswersCount);
-  congratulation(userName);
-  return userName;
-};
-
+/*
 export const allGameProcess = (arrayOfGames) => {
   let userName = '';
   let flag = 2; // if flag = 2 user see welcome and meeting messages, but not congratulations;
@@ -84,7 +80,7 @@ export const allGameProcess = (arrayOfGames) => {
     console.log(`${flag}`);
     if (i === gamesCount - 1) flag = 3; // if flag = 3 user see only congratulations;
     /*   take user's name and
-    save it in a variable (line 88)    */
+    save it in a variable (line 88)
     if (flag === 2) {
       userName = arrayOfGames[i](flag, userName);
       flag = 1; // user doesn't see anything;
@@ -95,7 +91,7 @@ export const allGameProcess = (arrayOfGames) => {
   }
   return userName;
 };
-
+*/
 /* export const gameProcess = (gameRules, flag, userName, gameQuestion) => {
   let tmp = 0;
   let localUserName = userName;

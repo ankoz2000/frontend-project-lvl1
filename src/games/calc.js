@@ -1,20 +1,30 @@
 import { getRandomInt, gameProcess } from '..';
 
-const calcDescription = 'What is the result of the expression?';
+const description = 'What is the result of the expression?';
 
 const getRandomOperation = () => {
-  const randomInt = getRandomInt(1, 90);
-  if (randomInt % 10 <= 3) return '*';
-  if (randomInt % 10 > 3 && randomInt <= 6) return '+';
-  return '-';
+  const randomInt = getRandomInt(1, 3);
+  switch (randomInt) {
+    case 1: {
+      return '+';
+    }
+    case 2: {
+      return '-';
+    }
+    default: {
+      return '*';
+    }
+  }
 };
 
 const getExpressionString = (number1, number2, operation) => `${number1} ${operation} ${number2}`;
 
-const checkingRightAnswerCalc = (number1, number2, operation) => {
-  if (operation === '*') return number1 * number2;
-  if (operation === '+') return number1 + number2;
-  return number1 - number2;
+const checkingRightAnswer = (number1, number2, operation) => {
+  switch (operation) {
+    case '+': return number1 + number2;
+    case '-': return number1 - number2;
+    default: return number1 * number2;
+  }
 };
 
 const questionCalc = () => {
@@ -22,24 +32,8 @@ const questionCalc = () => {
   const number2 = getRandomInt(1, 100);
   const operation = getRandomOperation();
   const question = getExpressionString(number1, number2, operation);
-  const rightAnswerCalc = checkingRightAnswerCalc(number1, number2, operation);
+  const rightAnswerCalc = checkingRightAnswer(number1, number2, operation);
   return [question, rightAnswerCalc];
 };
 
-const brainCalc = () => gameProcess(calcDescription, questionCalc);
-
-export default brainCalc;
-
-/* export const questionCalc = () => {
-  const number1 = getRandomInt(1, 100);
-  const number2 = getRandomInt(1, 100);
-  const operation = getRandomOperation();
-  console.log(`Question: ${number1} ${operation} ${number2}`);
-  const rightAnswer = checkingRightAnswerCalc(number1, number2, operation);
-  return rightAnswer;
-};
-
-export const brainCalc = (flag = 0, userName) => {
-  const localName = gameProcess(calcRules, flag, userName, questionCalc);
-  return;
-}; */
+export default () => gameProcess(description, questionCalc);
