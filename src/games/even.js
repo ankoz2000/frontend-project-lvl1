@@ -1,4 +1,5 @@
-import { getRandomInt, gameProcess } from '..';
+import gameProcess from '..';
+import getRandomInt from '../utils';
 
 export const description = 'Answer "yes" if number is even otherwise answer "no"';
 

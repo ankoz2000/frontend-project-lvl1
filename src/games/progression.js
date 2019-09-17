@@ -1,42 +1,32 @@
-import { getRandomInt, gameProcess } from '..';
+import gameProcess from '..';
+import getRandomInt from '../utils';
 
 const description = 'What number is missing in the progression?';
+const quantity = 10;
 
-const hiddenNumber = (place, startNumber, step) => {
-  let number = startNumber;
-  for (let i = 0; i < place; i += 1) {
-    number += step;
-  }
-  return number;
-};
+const hiddenNumber = (position, startNumber, step) => startNumber + step * (position - 1);
 
-const printProgressionWithoutNumber = (place, startNumber, step, quantity) => {
+const getProgressionWithoutNumber = (place, startNumber, step) => {
   let number = startNumber;
   let str = '';
   for (let i = 0; i < quantity; i += 1) {
     if (i === place - 1) {
       str += '.. ';
-      i += 1;
       number += step;
-    }
-    if (i !== quantity - 1) {
-      number += step;
-      str += `${number} `;
     } else {
+      str += `${number} `;
       number += step;
-      str += `${number}`;
     }
   }
-  return str;
+  return str.trim();
 };
 
 export const questionProgression = () => {
-  const quantity = 10;
   const startNumber = getRandomInt(1, 10);
   const step = getRandomInt(1, 10);
-  const place = getRandomInt(1, 10);
-  const question = printProgressionWithoutNumber(place, startNumber, step, quantity);
-  const rightAnswer = hiddenNumber(place, startNumber, step);
+  const position = getRandomInt(1, quantity);
+  const question = getProgressionWithoutNumber(position, startNumber, step, quantity);
+  const rightAnswer = hiddenNumber(position, startNumber, step);
   return [question, rightAnswer];
 };
 
