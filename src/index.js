@@ -12,8 +12,6 @@ const getUserName = () => {
   return userName;
 };
 
-const isAnswerRight = (answer, rightAnswer) => answer === String(rightAnswer);
-
 const congratulation = (userName) => {
   console.log(`Congratulations, ${userName}!`);
   return userName;
@@ -24,20 +22,19 @@ export default (gameDescription, gameQuestion) => {
   console.log(gameDescription);
   console.log('');
   const userName = getUserName();
-  for (let i = 0; i < roundsCount;) {
+  for (let i = 0; i < roundsCount; i += 1) {
     //  [question, rightAnswer] = [gameQuestion()[0], gameQuestion()[1]];
     const questionAndAnswer = gameQuestion();
-    const [question, rightAnswer] = [questionAndAnswer[0], questionAndAnswer[1]];
+    const [question, rightAnswer] = questionAndAnswer;
     console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
-    const check = isAnswerRight(answer, rightAnswer);
+    const check = answer === rightAnswer;
     if (!check) { // to show messages of falling round used boolean 'check'
       console.log(`"${answer}" is wrong answer. Right answer is "${rightAnswer}"`);
       console.log(`Try again, ${userName}`);
       return;
     }
     console.log('Correct!');
-    i += 1;
   }
   congratulation(userName);
 };

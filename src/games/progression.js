@@ -4,7 +4,9 @@ import getRandomInt from '../utils';
 const description = 'What number is missing in the progression?';
 const quantity = 10;
 
-const hiddenNumber = (position, startNumber, step) => startNumber + step * (position - 1);
+const getNumberOfProgression = (position, startNumber, step) => startNumber + step * (position - 1);
+
+const hiddenNumber = (position, startNumber, step) => getNumberOfProgression(position, startNumber, step);
 
 const getProgressionWithoutNumber = (place, startNumber, step) => {
   let number = startNumber;
@@ -12,11 +14,10 @@ const getProgressionWithoutNumber = (place, startNumber, step) => {
   for (let i = 0; i < quantity; i += 1) {
     if (i === place - 1) {
       str += '.. ';
-      number += step;
     } else {
       str += `${number} `;
-      number += step;
     }
+    number = getNumberOfProgression(place, startNumber, step);
   }
   return str.trim();
 };
