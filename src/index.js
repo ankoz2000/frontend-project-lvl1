@@ -25,6 +25,7 @@ export default (gameDescription, gameQuestion) => {
   for (let i = 0; i < roundsCount; i += 1) {
     //  [question, rightAnswer] = [gameQuestion()[0], gameQuestion()[1]];
     const questionAndAnswer = gameQuestion();
+    console.log(`IT IS QUESTION! ${questionAndAnswer}`); // delete
     const [question, rightAnswer] = questionAndAnswer;
     console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');

@@ -20,7 +20,7 @@ const getRandomOperation = () => {
 
 const getExpressionString = (number1, number2, operation) => `${number1} ${operation} ${number2}`;
 
-const checkingRightAnswer = (number1, number2, operation) => {
+const getRightAnswer = (number1, number2, operation) => {
   switch (operation) {
     case '+': return number1 + number2;
     case '-': return number1 - number2;
@@ -33,7 +33,7 @@ const questionCalc = () => {
   const number2 = getRandomInt(1, 100);
   const operation = getRandomOperation();
   const question = getExpressionString(number1, number2, operation);
-  const rightAnswerCalc = checkingRightAnswer(number1, number2, operation);
+  const rightAnswerCalc = String(getRightAnswer(number1, number2, operation));
   return [question, rightAnswerCalc];
 };
 

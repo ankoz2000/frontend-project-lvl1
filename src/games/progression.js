@@ -6,18 +6,18 @@ const quantity = 10;
 
 const getNumberOfProgression = (position, startNumber, step) => startNumber + step * (position - 1);
 
-const hiddenNumber = (position, startNumber, step) => getNumberOfProgression(position, startNumber, step);
+const getHiddenNumber = (position, startNumber, step) => getNumberOfProgression(position, startNumber, step);
 
 const getProgressionWithoutNumber = (place, startNumber, step) => {
-  let number = startNumber;
+  let number;
   let str = '';
   for (let i = 0; i < quantity; i += 1) {
+    number = getNumberOfProgression(i, startNumber, step);
     if (i === place - 1) {
       str += '.. ';
     } else {
       str += `${number} `;
     }
-    number = getNumberOfProgression(place, startNumber, step);
   }
   return str.trim();
 };
@@ -27,7 +27,7 @@ export const questionProgression = () => {
   const step = getRandomInt(1, 10);
   const position = getRandomInt(1, quantity);
   const question = getProgressionWithoutNumber(position, startNumber, step, quantity);
-  const rightAnswer = hiddenNumber(position, startNumber, step);
+  const rightAnswer = String(getHiddenNumber(position, startNumber, step));
   return [question, rightAnswer];
 };
 
