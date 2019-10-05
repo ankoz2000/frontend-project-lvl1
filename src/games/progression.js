@@ -6,7 +6,9 @@ const quantity = 10;
 
 const getNumberOfProgression = (position, startNumber, step) => startNumber + step * (position - 1);
 
-const getHiddenNumber = (position, startNumber, step) => getNumberOfProgression(position, startNumber, step);
+const getHiddenNumber = (position, startNumber, step) => {
+  getNumberOfProgression(position, startNumber, step);
+};
 
 const getProgressionWithoutNumber = (place, startNumber, step) => {
   let number;
