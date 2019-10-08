@@ -11,10 +11,9 @@ const getHiddenNumber = (position, startNumber, step) => {
 };
 
 const getProgressionWithoutNumber = (place, startNumber, step) => {
-  let number;
   let str = '';
   for (let i = 0; i < quantity; i += 1) {
-    number = getNumberOfProgression(i, startNumber, step);
+    const number = getNumberOfProgression(i, startNumber, step);
     if (i === place - 1) {
       str += '.. ';
     } else {
